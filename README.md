@@ -34,3 +34,5 @@ class ViewController: UIViewController {
     
 }
 ```
+
+<p align="center"><img src ="https://github.com/GrupoGO/PGActionWidget/blob/master/Screenshot.png" /></p>
