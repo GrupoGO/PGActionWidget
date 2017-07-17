@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PGDActionWidgetView" customModule="ActionWidget" customModuleProvider="target">
+            <connections>
+                <outlet property="container" destination="tti-Lg-d07" id="Nve-Vy-UbK"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="z4F-kp-1nd"/>
+                <outlet property="loader" destination="zIQ-Tx-U4Q" id="oPx-uj-kdL"/>
+                <outlet property="scrollView" destination="qUM-dy-atw" id="Mt8-dd-c6L"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="553" height="418"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tti-Lg-d07">
+                    <rect key="frame" x="8" y="8" width="537" height="402"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWm-Z3-bDN">
+                            <rect key="frame" x="0.0" y="0.0" width="537" height="42"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPA-KM-abd">
+                                    <rect key="frame" x="16" y="8" width="369" height="26"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-71-Hy5">
+                                    <rect key="frame" x="401" y="8" width="120" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="3kO-YO-Hbs"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="XgY-71-Hy5" secondAttribute="trailing" constant="16" id="AwE-gl-7Sk"/>
+                                <constraint firstItem="JPA-KM-abd" firstAttribute="leading" secondItem="CWm-Z3-bDN" secondAttribute="leading" constant="16" id="Nq8-Uh-RD1"/>
+                                <constraint firstAttribute="bottom" secondItem="XgY-71-Hy5" secondAttribute="bottom" constant="8" id="O6V-Vm-Hpv"/>
+                                <constraint firstItem="JPA-KM-abd" firstAttribute="top" secondItem="CWm-Z3-bDN" secondAttribute="top" constant="8" id="YfU-XK-Zi0"/>
+                                <constraint firstAttribute="bottom" secondItem="JPA-KM-abd" secondAttribute="bottom" constant="8" id="gDW-i6-Pyb"/>
+                                <constraint firstItem="XgY-71-Hy5" firstAttribute="top" secondItem="CWm-Z3-bDN" secondAttribute="top" constant="8" id="jzQ-DM-43c"/>
+                                <constraint firstAttribute="height" constant="42" id="lyy-9R-Cyy"/>
+                                <constraint firstItem="XgY-71-Hy5" firstAttribute="leading" secondItem="JPA-KM-abd" secondAttribute="trailing" constant="16" id="uH6-qE-VdU"/>
+                            </constraints>
+                        </view>
+                        <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUM-dy-atw">
+                            <rect key="frame" x="0.0" y="67" width="537" height="320"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="320" id="cNn-se-Zs6"/>
+                            </constraints>
+                        </scrollView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zIQ-Tx-U4Q">
+                            <rect key="frame" x="250" y="208.5" width="37" height="37"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="zIQ-Tx-U4Q" firstAttribute="centerX" secondItem="qUM-dy-atw" secondAttribute="centerX" id="6Wj-OP-fJa"/>
+                        <constraint firstAttribute="trailing" secondItem="CWm-Z3-bDN" secondAttribute="trailing" id="6q5-15-htz"/>
+                        <constraint firstItem="qUM-dy-atw" firstAttribute="leading" secondItem="tti-Lg-d07" secondAttribute="leading" id="BuV-mV-cW2"/>
+                        <constraint firstAttribute="trailing" secondItem="qUM-dy-atw" secondAttribute="trailing" id="DYD-fx-lOp"/>
+                        <constraint firstItem="qUM-dy-atw" firstAttribute="top" secondItem="CWm-Z3-bDN" secondAttribute="bottom" constant="25" id="Nf2-Sc-2pd"/>
+                        <constraint firstItem="CWm-Z3-bDN" firstAttribute="leading" secondItem="tti-Lg-d07" secondAttribute="leading" id="bW5-CL-C9C"/>
+                        <constraint firstAttribute="bottom" secondItem="qUM-dy-atw" secondAttribute="bottom" constant="15" id="e2S-jV-AW6"/>
+                        <constraint firstItem="CWm-Z3-bDN" firstAttribute="top" secondItem="tti-Lg-d07" secondAttribute="top" id="m77-Jb-Y4A"/>
+                        <constraint firstItem="zIQ-Tx-U4Q" firstAttribute="centerY" secondItem="qUM-dy-atw" secondAttribute="centerY" id="qNK-hH-kLB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="tti-Lg-d07" secondAttribute="trailing" constant="8" id="KV2-Do-sZK"/>
+                <constraint firstItem="tti-Lg-d07" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="REH-tF-9ft"/>
+                <constraint firstItem="tti-Lg-d07" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="vqw-Yn-Mmm"/>
+                <constraint firstAttribute="bottom" secondItem="tti-Lg-d07" secondAttribute="bottom" constant="8" id="yoT-xh-0jX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo.png" width="632" height="108"/>
+    </resources>
+</document>
