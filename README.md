@@ -16,7 +16,7 @@ pod 'PGActionWidget', :git => 'https://github.com/GrupoGO/PGActionWidget.git'
 ## Usage
 
 ### Basic Usage
-Just `import PGActionWidget` and create a instance of `PGDActionWidgetView`. **Works with Storyboard too**
+Just `import PGActionWidget` and add a `PGDActionWidgetView` to your Storyboard
 
 
 ```swift
@@ -29,7 +29,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Ask for top actions with 10 actions default
         widget.searchAction(text: nil, numberOfAction: nil)
+        
+        // Search for Search for a tag
+        // widget.searchAction(text: "your tag here", numberOfAction: nil)
+
+        // Search for Search for a tag
+        // widget.searchAction(text: nil, numberOfAction: nil)
     }
     
 }
