@@ -1,6 +1,5 @@
 # PGActionWidget
-PGActionWidget Init
-
+Action Widget for PlayGround Do social actions.
 
 ## Requirements
 
