@@ -36,26 +36,17 @@ public class PGDActionView: UIView {
     
     var fillRatingImage = UIImage(named: "fill", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     var outlineRatingImage = UIImage(named: "outline", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
+    var zoomOutImage = UIImage(named: "zoom_out", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     
-    var zoomInImage: UIImage? {
+    var zoomInImage: UIImage = UIImage(named: "zoom_in", in: Bundle(for: PGDActionView.self), compatibleWith: nil)! {
         didSet {
-            if let zImage = zoomInImage {
-                actionDetailButtonImage.image = zImage
-            } else {
-                actionDetailButtonImage.image = UIImage(named: "zoom_in", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
-            }
+            layoutSubviews()
         }
     }
     
-    var zoomOutImage = UIImage(named: "zoom_out", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
-    
-    var shareImage: UIImage? {
+    var shareImage: UIImage = UIImage(named: "share", in: Bundle(for: PGDActionView.self), compatibleWith: nil)! {
         didSet {
-            if let sImage = shareImage {
-                actionShareButtonImage.image = sImage
-            } else {
-                actionShareButtonImage.image = UIImage(named: "share", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
-            }
+            layoutSubviews()
         }
     }
     
@@ -214,7 +205,7 @@ public class PGDActionView: UIView {
                 self.actionDetailButtonImage.image = self.zoomOutImage
             } else {
                 self.detailView.isHidden = true
-                self.actionDetailButtonImage.image = self.zoomInImage == nil ? UIImage(named: "zoom_in", in: Bundle(for: PGDActionView.self), compatibleWith: nil) : self.zoomInImage!
+                self.actionDetailButtonImage.image = self.zoomInImage
             }
         }, completion: nil)
     }
