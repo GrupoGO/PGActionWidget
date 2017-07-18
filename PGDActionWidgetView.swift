@@ -127,6 +127,7 @@ public class PGDActionWidgetView: UIView {
     @IBOutlet fileprivate var container:UIView?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var actionText: UILabel!
     
     var actions: [Action]? {
         didSet {
@@ -174,8 +175,9 @@ public class PGDActionWidgetView: UIView {
         }
     }
     
-    public func searchActions(coordinates:CLLocationCoordinate2D, numberOfAction:Int?) {
+    public func searchActions(coordinates:CLLocationCoordinate2D, locationName:String, numberOfAction:Int?) {
         
+        actionText.text = "Actions near \(locationName)"
         let size = numberOfAction != nil ? numberOfAction! : 100
 
         let urlCoordinates = "https://maps.googleapis.com/maps/api/geocode/json?language=en&sensor=false&latlng=\(coordinates.latitude),\(coordinates.longitude)&result_type=administrative_area_level_1&key=AIzaSyBxL5CwUDj15cnfFP0PbEr0k8nq6Po3gEw"
@@ -236,6 +238,13 @@ public class PGDActionWidgetView: UIView {
     }
     
     public func searchActions(text:String?, numberOfAction:Int?) {
+        
+        if let textActioon = text {
+            actionText.text = "Actions for \(textActioon)"
+        } else {
+            actionText.text = "Recommended actions"
+        }
+        
         let size = numberOfAction != nil ? numberOfAction! : 10
         let urlPHP = text != nil ? "https://webintra.net/api/Playground/search?text=\(text!)&size=\(size)" : "https://webintra.net/api/Playground/search?list=16758375"
         let request = NSMutableURLRequest(url: URL(string: urlPHP)!)
