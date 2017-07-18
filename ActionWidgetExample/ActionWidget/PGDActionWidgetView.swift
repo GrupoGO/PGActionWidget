@@ -173,7 +173,7 @@ public class PGDActionWidgetView: UIView {
         }
     }
     
-    public func searchAction(text:String?, numberOfAction:Int?) {
+    public func searchActions(text:String?, numberOfAction:Int?) {
         let size = numberOfAction != nil ? numberOfAction! : 10
         let urlPHP = text != nil ? "https://webintra.net/api/Playground/search?text=\(text!)&size=\(size)" : "https://webintra.net/api/Playground/search?list=16758375"
         let request = NSMutableURLRequest(url: URL(string: urlPHP)!)
