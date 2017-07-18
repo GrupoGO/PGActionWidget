@@ -29,13 +29,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Ask for top actions with 10 actions default
-        widget.searchAction(text: nil, numberOfAction: nil)
+        widget.searchActions(text: nil, numberOfAction: nil)
         
         // Search for Search for a tag
-        // widget.searchAction(text: "your tag here", numberOfAction: nil)
+        // widget.searchActions(text: "your tag here", numberOfAction: nil)
 
         // Search for Search for a tag
-        // widget.searchAction(text: nil, numberOfAction: nil)
+        // widget.searchActions(text: nil, numberOfAction: nil)
     }
     
 }
