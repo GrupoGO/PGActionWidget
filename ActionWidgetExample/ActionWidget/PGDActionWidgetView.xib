@@ -7,9 +7,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Suisse BP Int'l Regular.otf">
+            <string>SuisseBPIntl-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PGDActionWidgetView" customModule="ActionWidget" customModuleProvider="target">
             <connections>
+                <outlet property="actionText" destination="egd-80-OSt" id="aap-eO-Ysb"/>
                 <outlet property="container" destination="tti-Lg-d07" id="Nve-Vy-UbK"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="z4F-kp-1nd"/>
                 <outlet property="loader" destination="zIQ-Tx-U4Q" id="oPx-uj-kdL"/>
@@ -29,7 +35,21 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPA-KM-abd">
                                     <rect key="frame" x="16" y="8" width="369" height="26"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top actions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egd-80-OSt">
+                                            <rect key="frame" x="0.0" y="0.0" width="369" height="26"/>
+                                            <fontDescription key="fontDescription" name="SuisseBPIntl-Regular" family="Suisse BP Int'l" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="egd-80-OSt" secondAttribute="bottom" id="AEb-i5-eqk"/>
+                                        <constraint firstItem="egd-80-OSt" firstAttribute="top" secondItem="JPA-KM-abd" secondAttribute="top" id="JWo-wh-q27"/>
+                                        <constraint firstAttribute="trailing" secondItem="egd-80-OSt" secondAttribute="trailing" id="K29-K2-3Jp"/>
+                                        <constraint firstItem="egd-80-OSt" firstAttribute="leading" secondItem="JPA-KM-abd" secondAttribute="leading" id="hL1-QM-iRY"/>
+                                    </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-71-Hy5">
                                     <rect key="frame" x="401" y="8" width="120" height="26"/>
