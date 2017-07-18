@@ -42,8 +42,10 @@ widget.searchActions(text: "your tag here", numberOfAction: nil)
 ```
 
 ### Search for located actions
+Add `import CoreLocation`
+
 ```swift
-import PGActionWidget
+import CoreLocation
 
 class ViewController: UIViewController {
 
