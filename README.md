@@ -36,8 +36,6 @@ class ViewController: UIViewController {
 }
 ```
 
-<p align="center"><img src ="https://github.com/GrupoGO/PGActionWidget/blob/master/Screenshot.png" /></p>
-
 ### Search for a tag actions
 ```swift
 widget.searchActions(text: "your tag here", numberOfAction: nil)
@@ -61,3 +59,5 @@ class ViewController: UIViewController {
 }
 
 ```
+
+<p align="center"><img src ="https://github.com/GrupoGO/PGActionWidget/blob/master/Screenshot.png" /></p>
