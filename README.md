@@ -9,7 +9,7 @@ It requires Xcode 9.0+ and Swift 3.0.
 ## Installation
 
 ```ruby
-pod 'PGActionWidget', :git => 'https://github.com/GrupoGO/PGActionWidget.git'
+pod 'PGActionWidget'
 ```
 
 ## Usage
