@@ -20,6 +20,7 @@ Just `import PGActionWidget` and add a `PGDActionWidgetView` to your Storyboard
 
 ```swift
 import PGActionWidget
+import CoreLocation
 
 class ViewController: UIViewController {
 
@@ -28,14 +29,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Ask for top actions with 10 actions default
+        // numberOfAction default is 10
+        
+        // MARK: - Ask for top actions
         widget.searchActions(text: nil, numberOfAction: nil)
         
-        // Search for Search for a tag
+        // MARK: -  Search for a tag
         // widget.searchActions(text: "your tag here", numberOfAction: nil)
-
-        // Search for Search for a tag
-        // widget.searchActions(text: nil, numberOfAction: nil)
+        
+        // MARK: - Search for a location
+        // widget.searchActions(coordinates: CLLocationCoordinate2D(latitude: 40.3546907, longitude: -3.744518400000061), numberOfAction: 150)
     }
     
 }
