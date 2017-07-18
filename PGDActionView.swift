@@ -170,14 +170,27 @@ public class PGDActionView: UIView {
         self.commonInit();
     }
     
+    func schemeAvailable(_ scheme: String) -> Bool {
+        if let url = URL.init(string: scheme) {
+            return UIApplication.shared.canOpenURL(url)
+        }
+        return false
+    }
+    
     @IBAction func pledgeAction(_ sender: UIButton) {
         if let action = action {
-            let url = action.url
-            let url_cms = action.cms_url
-            if url != "" {
-                UIApplication.shared.openURL(URL(string: url)!)
+            let PGDHook = "playgrounddo://#social!\(action.id)"
+            let PGURL = URL(string: PGDHook)
+            if UIApplication.shared.canOpenURL(PGURL! as URL) {
+                UIApplication.shared.openURL(PGURL!)
             } else {
-                UIApplication.shared.openURL(URL(string: url_cms)!)
+                let url = action.url
+                let url_cms = action.cms_url
+                if url != "" {
+                    UIApplication.shared.openURL(URL(string: url)!)
+                } else {
+                    UIApplication.shared.openURL(URL(string: url_cms)!)
+                }
             }
         }
     }
