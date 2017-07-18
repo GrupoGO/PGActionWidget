@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 struct Action {
     
@@ -173,6 +174,67 @@ public class PGDActionWidgetView: UIView {
         }
     }
     
+    public func searchActions(coordinates:CLLocationCoordinate2D, numberOfAction:Int?) {
+        
+        let size = numberOfAction != nil ? numberOfAction! : 100
+
+        let urlCoordinates = "https://maps.googleapis.com/maps/api/geocode/json?language=en&sensor=false&latlng=\(coordinates.latitude),\(coordinates.longitude)&result_type=administrative_area_level_1&key=AIzaSyBxL5CwUDj15cnfFP0PbEr0k8nq6Po3gEw"
+        let requestCoordinates = NSMutableURLRequest(url: URL(string: urlCoordinates)!)
+        requestCoordinates.httpMethod = "GET"
+        let taskCoordinates = URLSession.shared.dataTask(with: requestCoordinates as URLRequest, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+            } else {
+                DispatchQueue.main.async(execute: {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                        if let results = json["results"] as? [Any] {
+                            if results.count > 0 {
+                                let geometry = (results[0] as! [String:Any])["geometry"] as! [String:Any]
+                                let bounds = geometry["bounds"] as! [String:Any]
+                                
+                                let max_lat = (bounds["northeast"] as! [String:Any])["lat"] as! Double
+                                let max_lng = (bounds["northeast"] as! [String:Any])["lng"] as! Double
+                                let min_lat = (bounds["southwest"] as! [String:Any])["lat"] as! Double
+                                let min_lng = (bounds["southwest"] as! [String:Any])["lng"] as! Double
+                                
+                                let urlPHP = "https://webintra.net/api/Playground/search?min_lat=\(min_lat)&max_lat=\(max_lat)&min_lng=\(min_lng)&max_lng=\(max_lng)&size=\(size)"
+                                let request = NSMutableURLRequest(url: URL(string: urlPHP)!)
+                                request.httpMethod = "GET"
+                                request.addValue("59baef879d68f4af3c97c0269ed46200", forHTTPHeaderField: "Token")
+                                request.addValue("b6cccc4e45422e84143cd6a8fa589eb4", forHTTPHeaderField: "Secret")
+                                
+                                let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+                                    
+                                    if error != nil {
+                                        print(error!)
+                                    } else {
+                                        DispatchQueue.main.async(execute: {
+                                            do {
+                                                let parsedData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                                                self.parseActions(parsedData: parsedData)
+                                            } catch let error as NSError {
+                                                print(error)
+                                            }
+                                        });
+                                    }
+                                    
+                                })
+                                task.resume()
+                            }
+                        }
+                    } catch let error as NSError {
+                        print(error)
+                    }
+                });
+            }
+            
+        })
+        taskCoordinates.resume()
+
+    }
+    
     public func searchActions(text:String?, numberOfAction:Int?) {
         let size = numberOfAction != nil ? numberOfAction! : 10
         let urlPHP = text != nil ? "https://webintra.net/api/Playground/search?text=\(text!)&size=\(size)" : "https://webintra.net/api/Playground/search?list=16758375"
@@ -189,63 +251,7 @@ public class PGDActionWidgetView: UIView {
                 DispatchQueue.main.async(execute: {
                     do {
                         let parsedData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
-                        let info = parsedData["info"] as! [String:Any]
-                        if let items = info["items"] as? [[String:Any]] {
-                            var parseActions = [Action]()
-                            for item in items {
-                                
-                                var newAction = Action(
-                                    cms_url: item["cms_url"] as! String,
-                                    end_date: Date.dateFromString(item["end_date"] as! String, timeZone: false),
-                                    id: item["id"] as! Int,
-                                    image: item["image"] as! String,
-                                    isDo: false,
-                                    isTodo: false,
-                                    latitude: item["latitude"] as? Double != nil ? item["latitude"] as! Double : 0.0,
-                                    longitude: item["longitude"] as? Double != nil ? item["longitude"] as! Double : 0.0,
-                                    metric: item["metric"] as! String,
-                                    metric_quantity: item["metric_quantity"] as! Int,
-                                    platform: item["website"] as! String,
-                                    pledges: item["plegdes"] as? Int != nil ? item["plegdes"] as! Int : 0,
-                                    review: item["review"] as? Int != nil ? item["review"] as! Int : 0,
-                                    start_date: Date.dateFromString(item["start_date"] as! String, timeZone: false),
-                                    text: item["description"] as! String,
-                                    time: item["time"] as! Int,
-                                    title: item["title"] as! String,
-                                    type: item["type"] as! String,
-                                    url: item["url"] as! String,
-                                    categories: [],
-                                    doUsers: [],
-                                    lists: [],
-                                    poll: [],
-                                    todoUsers: []
-                                )
-                                
-                                if newAction.type.lowercased() == "poll" {
-                                    let poll = item["poll"] as! [String:Any]
-                                    let pollTitle = poll["title"] as! String
-                                    newAction.title = pollTitle
-                                    
-                                    let pollAnswers = poll["answers"] as! [[String:Any]]
-                                    var answers = [Answer]()
-                                    for answer in pollAnswers {
-                                        let a = Answer(
-                                            id: answer["id"] as! Int,
-                                            poll_id: poll["id"] as! Int,
-                                            poll_title: newAction.title,
-                                            statValue: 0,
-                                            text: answer["text"] as! String,
-                                            action: newAction)
-                                        answers.append(a)
-                                    }
-                                    newAction.poll = answers
-                                }
-                                
-                                parseActions.append(newAction)
-                            }
-                            
-                            self.actions = parseActions
-                        }
+                        self.parseActions(parsedData: parsedData)
                     } catch let error as NSError {
                         print(error)
                     }
@@ -255,6 +261,66 @@ public class PGDActionWidgetView: UIView {
         })
         task.resume()
         
+    }
+    
+    func parseActions(parsedData:[String:Any]) {
+        let info = parsedData["info"] as! [String:Any]
+        if let items = info["items"] as? [[String:Any]] {
+            var parseActions = [Action]()
+            for item in items {
+                
+                var newAction = Action(
+                    cms_url: item["cms_url"] as! String,
+                    end_date: Date.dateFromString(item["end_date"] as! String, timeZone: false),
+                    id: item["id"] as! Int,
+                    image: item["image"] as! String,
+                    isDo: false,
+                    isTodo: false,
+                    latitude: item["latitude"] as? Double != nil ? item["latitude"] as! Double : 0.0,
+                    longitude: item["longitude"] as? Double != nil ? item["longitude"] as! Double : 0.0,
+                    metric: item["metric"] as! String,
+                    metric_quantity: item["metric_quantity"] as! Int,
+                    platform: item["website"] as! String,
+                    pledges: item["plegdes"] as? Int != nil ? item["plegdes"] as! Int : 0,
+                    review: item["review"] as? Int != nil ? item["review"] as! Int : 0,
+                    start_date: Date.dateFromString(item["start_date"] as! String, timeZone: false),
+                    text: item["description"] as! String,
+                    time: item["time"] as! Int,
+                    title: item["title"] as! String,
+                    type: item["type"] as! String,
+                    url: item["url"] as! String,
+                    categories: [],
+                    doUsers: [],
+                    lists: [],
+                    poll: [],
+                    todoUsers: []
+                )
+                
+                if newAction.type.lowercased() == "poll" {
+                    let poll = item["poll"] as! [String:Any]
+                    let pollTitle = poll["title"] as! String
+                    newAction.title = pollTitle
+                    
+                    let pollAnswers = poll["answers"] as! [[String:Any]]
+                    var answers = [Answer]()
+                    for answer in pollAnswers {
+                        let a = Answer(
+                            id: answer["id"] as! Int,
+                            poll_id: poll["id"] as! Int,
+                            poll_title: newAction.title,
+                            statValue: 0,
+                            text: answer["text"] as! String,
+                            action: newAction)
+                        answers.append(a)
+                    }
+                    newAction.poll = answers
+                }
+                
+                parseActions.append(newAction)
+            }
+            
+            self.actions = parseActions
+        }
     }
     
     fileprivate func commonInit() {
