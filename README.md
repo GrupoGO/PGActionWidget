@@ -36,12 +36,12 @@ class ViewController: UIViewController {
 }
 ```
 
-### Search for a tag actions
+### Search for actions with a tag
 ```swift
 widget.searchActions(text: "your tag here", numberOfAction: nil)
 ```
 
-### Search for a location actions
+### Search for located actions
 ```swift
 import PGActionWidget
 
