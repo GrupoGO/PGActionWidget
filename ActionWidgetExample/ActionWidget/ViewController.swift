@@ -19,13 +19,13 @@ class ViewController: UIViewController {
         // numberOfAction default is 10
         
         // MARK: - Ask for top actions
-        widget.searchAction(text: nil, numberOfAction: nil)
+        widget.searchActions(text: nil, numberOfAction: nil)
         
         // MARK: -  Search for Search for a tag
-        // widget.searchAction(text: "your tag here", numberOfAction: nil)
+        // widget.searchActions(text: "your tag here", numberOfAction: nil)
 
         // MARK: -  Search for Search for a tag
-        // widget.searchAction(text: nil, numberOfAction: nil)
+        // widget.searchActions(text: nil, numberOfAction: nil)
     }
 
     override func didReceiveMemoryWarning() {
