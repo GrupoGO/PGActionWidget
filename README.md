@@ -12,6 +12,17 @@ It requires Xcode 9.0+ and Swift 3.0.
 pod 'PGActionWidget'
 ```
 
+## Open actions in PlayGround Do application
+Just add the item `playgrounddo` in your `LSApplicationQueriesSchemes`
+
+```swift
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        // ...
+        <string>playgrounddo</string>
+    </array>
+```
+
 ## Usage
 
 ### Basic Usage
