@@ -38,7 +38,8 @@ class ViewController: UIViewController {
         // widget.searchActions(text: "your tag here", numberOfAction: nil)
         
         // MARK: - Search for a location
-        // widget.searchActions(coordinates: CLLocationCoordinate2D(latitude: 40.3546907, longitude: -3.744518400000061), numberOfAction: 150)
+        // let location = CLLocationCoordinate2D(latitude: 41.397392, longitude: 2.195231)
+        // widget.searchActions(coordinates: location, locationName: "PlayGround", numberOfAction: 150)
     }
     
 }
