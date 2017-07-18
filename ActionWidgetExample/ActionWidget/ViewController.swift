@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     
@@ -21,11 +22,11 @@ class ViewController: UIViewController {
         // MARK: - Ask for top actions
         widget.searchActions(text: nil, numberOfAction: nil)
         
-        // MARK: -  Search for Search for a tag
+        // MARK: -  Search for a tag
         // widget.searchActions(text: "your tag here", numberOfAction: nil)
 
-        // MARK: -  Search for Search for a tag
-        // widget.searchActions(text: nil, numberOfAction: nil)
+        // MARK: - Search for a location
+        // widget.searchActions(coordinates: CLLocationCoordinate2D(latitude: 40.3546907, longitude: -3.744518400000061), numberOfAction: 150)
     }
 
     override func didReceiveMemoryWarning() {
