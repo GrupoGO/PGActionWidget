@@ -175,7 +175,7 @@ public class PGDActionWidgetView: UIView {
         }
     }
     
-    public func searchActions(coordinates:CLLocationCoordinate2D, locationName:String, numberOfAction:Int?) {
+    public func searchActions(coordinates:CLLocationCoordinate2D, locationName:String, keywords:[String]?, numberOfAction:Int?) {
         
         actionText.text = "Actions near \(locationName)"
         let size = numberOfAction != nil ? numberOfAction! : 100
@@ -201,8 +201,20 @@ public class PGDActionWidgetView: UIView {
                                 let min_lat = (bounds["southwest"] as! [String:Any])["lat"] as! Double
                                 let min_lng = (bounds["southwest"] as! [String:Any])["lng"] as! Double
                                 
-                                let urlPHP = "https://webintra.net/api/Playground/search?min_lat=\(min_lat)&max_lat=\(max_lat)&min_lng=\(min_lng)&max_lng=\(max_lng)&size=\(size)"
-                                let request = NSMutableURLRequest(url: URL(string: urlPHP)!)
+                                var text2Search = ""
+                                if keywords != nil {
+                                    for i in 0..<keywords!.count {
+                                        if text2Search == "" {
+                                            text2Search = keywords![i]
+                                        } else {
+                                            text2Search = text2Search + "," + keywords![i]
+                                        }
+                                    }
+                                }
+
+                                let urlPHP = keywords != nil ? "https://webintra.net/api/Playground/search?keywords=\(text2Search)&size=\(size)&min_lat=\(min_lat)&max_lat=\(max_lat)&min_lng=\(min_lng)&max_lng=\(max_lng)" : "https://webintra.net/api/Playground/search?min_lat=\(min_lat)&max_lat=\(max_lat)&min_lng=\(min_lng)&max_lng=\(max_lng)&size=\(size)"
+                                
+                                let request = NSMutableURLRequest(url: URL(string: urlPHP.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
                                 request.httpMethod = "GET"
                                 request.addValue("59baef879d68f4af3c97c0269ed46200", forHTTPHeaderField: "Token")
                                 request.addValue("b6cccc4e45422e84143cd6a8fa589eb4", forHTTPHeaderField: "Secret")
@@ -237,17 +249,25 @@ public class PGDActionWidgetView: UIView {
 
     }
     
-    public func searchActions(text:String?, numberOfAction:Int?) {
+    public func searchActions(keywords:[String]?, numberOfAction:Int?) {
         
-        if let textActioon = text {
-            actionText.text = "Actions for \(textActioon)"
-        } else {
-            actionText.text = "Recommended actions"
+        actionText.text = "Recommended actions"
+        
+        var text2Search = ""
+        if keywords != nil {
+            for i in 0..<keywords!.count {
+                if text2Search == "" {
+                    text2Search = keywords![i]
+                } else {
+                    text2Search = text2Search + "," + keywords![i]
+                }
+            }
         }
         
         let size = numberOfAction != nil ? numberOfAction! : 10
-        let urlPHP = text != nil ? "https://webintra.net/api/Playground/search?text=\(text!)&size=\(size)" : "https://webintra.net/api/Playground/search?list=16758375"
-        let request = NSMutableURLRequest(url: URL(string: urlPHP)!)
+        let urlPHP = keywords != nil ? "https://webintra.net/api/Playground/search?keywords=\(text2Search)&size=\(size)" : "https://webintra.net/api/Playground/search?list=16758375"
+        
+        let request = NSMutableURLRequest(url: URL(string: urlPHP.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         request.httpMethod = "GET"
         request.addValue("59baef879d68f4af3c97c0269ed46200", forHTTPHeaderField: "Token")
         request.addValue("b6cccc4e45422e84143cd6a8fa589eb4", forHTTPHeaderField: "Secret")

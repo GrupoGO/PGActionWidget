@@ -20,14 +20,16 @@ class ViewController: UIViewController {
         // numberOfAction default is 10
         
         // MARK: - Ask for top actions
-        widget.searchActions(text: nil, numberOfAction: nil)
+        widget.searchActions(keywords: nil, numberOfAction: nil)
         
         // MARK: -  Search for a tag
-        // widget.searchActions(text: "your tag here", numberOfAction: nil)
+        // let keywords = ["fitness","health"]
+        // widget.searchActions(keywords: keywords, numberOfAction: nil)
         
         // MARK: - Search for a location
+        // let keywords = ["fitness","health"]
         // let location = CLLocationCoordinate2D(latitude: 41.397392, longitude: 2.195231)
-        // widget.searchActions(coordinates: location, locationName: "PlayGround", numberOfAction: 150)
+        // widget.searchActions(coordinates: location, locationName: "PlayGround", keywords: keywords, numberOfAction: 150)
     }
 
     override func didReceiveMemoryWarning() {
