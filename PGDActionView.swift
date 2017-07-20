@@ -99,8 +99,8 @@ public class PGDActionView: UIView {
                 actionTitleDetail.text = action.title
                 actionDescription.text = action.text
                 actionType.text = action.type
-                actionButton.setTitle(actionButtonTile, for: .normal)
-                actionDetailButton.setTitle(actionButtonTile, for: .normal)
+//                actionButton.setTitle(actionButtonTile, for: .normal)
+//                actionDetailButton.setTitle(actionButtonTile, for: .normal)
                 actionPledges.text = "\(action.pledges)"
                 
                 switch action.review {
@@ -211,7 +211,15 @@ public class PGDActionView: UIView {
         }
     }
     
-    @IBAction func rotate(_ sender: Any) {
+    @IBAction func showDetail(_ sender: Any) {
+        rotateView()
+    }
+    
+    @IBAction func closeDetail(_ sender: Any) {
+        rotateView()
+    }
+    
+    func rotateView() {
         UIView.transition(with: self, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             if self.detailView.isHidden {
                 self.detailView.isHidden = false
@@ -244,10 +252,10 @@ public class PGDActionView: UIView {
         container.layer.cornerRadius = 5
         detailView.layer.cornerRadius = 5
         
-        actionButton.layer.borderColor = UIColor.black.cgColor
-        actionButton.layer.borderWidth = 1
-        actionDetailButton.layer.borderColor = UIColor.black.cgColor
-        actionDetailButton.layer.borderWidth = 1
+//        actionButton.layer.borderColor = UIColor.black.cgColor
+//        actionButton.layer.borderWidth = 1
+//        actionDetailButton.layer.borderColor = UIColor.black.cgColor
+//        actionDetailButton.layer.borderWidth = 1
         
         self.addSubview(content)
     }
