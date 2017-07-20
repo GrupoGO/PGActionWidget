@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A01DD17D1F20A85000CD6856 /* do.png in Resources */ = {isa = PBXBuildFile; fileRef = A01DD17C1F20A85000CD6856 /* do.png */; };
+		A01DD17F1F20AB1400CD6856 /* do_black.png in Resources */ = {isa = PBXBuildFile; fileRef = A01DD17E1F20AB1400CD6856 /* do_black.png */; };
 		A05F06C11F173A1700869D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05F06C01F173A1700869D7C /* AppDelegate.swift */; };
 		A05F06C31F173A1700869D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05F06C21F173A1700869D7C /* ViewController.swift */; };
 		A05F06C61F173A1700869D7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05F06C41F173A1700869D7C /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A01DD17C1F20A85000CD6856 /* do.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do.png; sourceTree = "<group>"; };
+		A01DD17E1F20AB1400CD6856 /* do_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = do_black.png; sourceTree = "<group>"; };
 		A05F06BD1F173A1700869D7C /* ActionWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActionWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A05F06C01F173A1700869D7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05F06C21F173A1700869D7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				A05F06D71F173A6200869D7C /* PGDActionWidgetView.swift */,
 				A070B5E91F1760E50051D1AC /* PGDActionView.xib */,
 				A070B5EB1F1760F30051D1AC /* PGDActionView.swift */,
+				A01DD17C1F20A85000CD6856 /* do.png */,
+				A01DD17E1F20AB1400CD6856 /* do_black.png */,
 				A0BBC87C1F18AB3E00A30B76 /* logo.png */,
 				A0BBC8781F18A6FB00A30B76 /* fill.png */,
 				A0BBC8791F18A6FB00A30B76 /* outline.png */,
@@ -259,6 +265,7 @@
 				A0BBC8991F18B19300A30B76 /* SuisseWorks-RegularItalic.otf in Resources */,
 				A0BBC8921F18B19300A30B76 /* SuisseWorks-Bold.otf in Resources */,
 				A0BBC88A1F18B19300A30B76 /* Suisse BP Int'l Medium Italic.otf in Resources */,
+				A01DD17D1F20A85000CD6856 /* do.png in Resources */,
 				A0BBC87D1F18AB3E00A30B76 /* logo.png in Resources */,
 				A05F06D61F173A2E00869D7C /* PGDActionWidgetView.xib in Resources */,
 				A0BBC88F1F18B19300A30B76 /* Suisse BP Int'l Thin.otf in Resources */,
@@ -272,6 +279,7 @@
 				A05F06C61F173A1700869D7C /* Main.storyboard in Resources */,
 				A0BBC88B1F18B19300A30B76 /* Suisse BP Int'l Medium.otf in Resources */,
 				A0BBC8971F18B19300A30B76 /* SuisseWorks-MediumItalic.otf in Resources */,
+				A01DD17F1F20AB1400CD6856 /* do_black.png in Resources */,
 				A0BBC8981F18B19300A30B76 /* SuisseWorks-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
