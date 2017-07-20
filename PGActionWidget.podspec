@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "PGActionWidget"
-  s.version      = "0.6"
+  s.version      = "0.8"
   s.summary      = "PlayGround Do social actions widget."
   s.description  = <<-DESC
   Action Widget for PlayGround Do social actions.
