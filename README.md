@@ -73,4 +73,4 @@ class ViewController: UIViewController {
 
 ```
 
-<p align="center"><img src ="https://github.com/GrupoGO/PGActionWidget/blob/master/Screenshot.png" /></p>
+<p align="center"><img src ="https://github.com/GrupoGO/PGActionWidget/blob/master/Screenshot_v2.png" /></p>
