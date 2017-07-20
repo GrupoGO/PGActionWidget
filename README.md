@@ -47,7 +47,7 @@ class ViewController: UIViewController {
 }
 ```
 
-### Search for actions with a tag
+### Search actions for keywords
 ```swift
 let keywords = ["fitness","health"]
 widget.searchActions(keywords: keywords, numberOfAction: nil)
