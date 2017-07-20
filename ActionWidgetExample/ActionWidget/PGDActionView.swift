@@ -30,6 +30,7 @@ public class PGDActionView: UIView {
     @IBOutlet weak var actionDetailButtonImage: UIImageView!
     @IBOutlet weak var actionDetailButton: UIButton!
     @IBOutlet weak var actionTitleDetail: UILabel!
+    @IBOutlet weak var actionTypeDetail: UILabel!
     @IBOutlet weak var actionDescription: UITextView!
     @IBOutlet weak var actionShareButtonImage: UIImageView!
     
@@ -95,10 +96,13 @@ public class PGDActionView: UIView {
                     actionButtonTile = "Do"
                 }
                 
+                print(actionButtonTile)
+                
                 actionTitle.text = action.title
                 actionTitleDetail.text = action.title
                 actionDescription.text = action.text
                 actionType.text = action.type
+                actionTypeDetail.text = action.type
 //                actionButton.setTitle(actionButtonTile, for: .normal)
 //                actionDetailButton.setTitle(actionButtonTile, for: .normal)
                 actionPledges.text = "\(action.pledges)"
