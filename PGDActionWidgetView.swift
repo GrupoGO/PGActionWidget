@@ -129,6 +129,8 @@ public class PGDActionWidgetView: UIView {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var actionText: UILabel!
     
+    var downloadPGD:Bool = false
+    
     var actions: [Action]? {
         didSet {
             if let actions = actions {
@@ -138,6 +140,7 @@ public class PGDActionWidgetView: UIView {
                 for action in actions {
                     let actionView = PGDActionView(frame: CGRect(x: originX, y: 0, width: 222.0, height: Double(height)))
                     actionView.action = action
+                    actionView.downloadPGD = self.downloadPGD
                     originX += 234
                     scrollView.addSubview(actionView)
                 }

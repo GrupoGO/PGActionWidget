@@ -38,7 +38,7 @@ public class PGDActionView: UIView {
     var fillRatingImage = UIImage(named: "fill", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     var outlineRatingImage = UIImage(named: "outline", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     var zoomOutImage = UIImage(named: "zoom_out", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
-    var downloadPGS:Bool = false
+    var downloadPGD:Bool = false
     
     var zoomInImage: UIImage = UIImage(named: "zoom_in", in: Bundle(for: PGDActionView.self), compatibleWith: nil)! {
         didSet {
@@ -189,7 +189,7 @@ public class PGDActionView: UIView {
             if UIApplication.shared.canOpenURL(PGURL! as URL) {
                 UIApplication.shared.openURL(PGURL!)
             } else {
-                if downloadPGS {
+                if downloadPGD {
                     let alertVC = UIAlertController(title: "No tienes la aplicación PlayGround Do.", message: "¿Quieres instalarla ahora?", preferredStyle: .actionSheet)
                     let downloadAction = UIAlertAction(title: "Si", style: .default, handler: { (success) in
                         let url = "https://itunes.apple.com/us/app/playground-do/id1234718743"
