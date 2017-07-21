@@ -38,6 +38,7 @@ public class PGDActionView: UIView {
     var fillRatingImage = UIImage(named: "fill", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     var outlineRatingImage = UIImage(named: "outline", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
     var zoomOutImage = UIImage(named: "zoom_out", in: Bundle(for: PGDActionView.self), compatibleWith: nil)
+    var downloadPGS:Bool = false
     
     var zoomInImage: UIImage = UIImage(named: "zoom_in", in: Bundle(for: PGDActionView.self), compatibleWith: nil)! {
         didSet {
@@ -188,12 +189,46 @@ public class PGDActionView: UIView {
             if UIApplication.shared.canOpenURL(PGURL! as URL) {
                 UIApplication.shared.openURL(PGURL!)
             } else {
-                let url = action.url
-                let url_cms = action.cms_url
-                if url != "" {
-                    UIApplication.shared.openURL(URL(string: url)!)
+                if downloadPGS {
+                    let alertVC = UIAlertController(title: "No tienes la aplicación PlayGround Do.", message: "¿Quieres instalarla ahora?", preferredStyle: .actionSheet)
+                    let downloadAction = UIAlertAction(title: "Si", style: .default, handler: { (success) in
+                        let url = "https://itunes.apple.com/us/app/playground-do/id1234718743"
+                        let scheme = "itms-apps://itunes.apple.com/es/app/apple-store/id1234718743"
+                        
+                        if self.schemeAvailable("itms-apps://") {
+                            UIApplication.shared.openURL(URL(string: scheme)!)
+                        } else {
+                            UIApplication.shared.openURL(URL(string: url)!)
+                        }
+
+                    })
+                    let cancelAction = UIAlertAction(title: "Ahora no", style: .cancel, handler: { (success) in
+                        let url = action.url
+                        let url_cms = action.cms_url
+                        if url != "" {
+                            UIApplication.shared.openURL(URL(string: url)!)
+                        } else {
+                            UIApplication.shared.openURL(URL(string: url_cms)!)
+                        }
+                    })
+                    alertVC.addAction(downloadAction)
+                    alertVC.addAction(cancelAction)
+                    
+                    if var topController = UIApplication.shared.keyWindow?.rootViewController {
+                        while let presentedViewController = topController.presentedViewController {
+                            topController = presentedViewController
+                        }
+                        
+                        topController.present(alertVC, animated: true, completion: nil)
+                    }
                 } else {
-                    UIApplication.shared.openURL(URL(string: url_cms)!)
+                    let url = action.url
+                    let url_cms = action.cms_url
+                    if url != "" {
+                        UIApplication.shared.openURL(URL(string: url)!)
+                    } else {
+                        UIApplication.shared.openURL(URL(string: url_cms)!)
+                    }
                 }
             }
         }
