@@ -23,6 +23,20 @@ Just add the item `playgrounddo` in your `LSApplicationQueriesSchemes`
     </array>
 ```
 
+## Request PlayGround Do download
+Set `downloadPGD` to `true` before `searchActions`
+
+```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // MARK: - Ask for top actions
+        // numberOfAction default is 10
+        widget.downloadPGD = true
+        widget.searchActions(keywords: nil, numberOfAction: nil)
+    }
+```
+
 ## Usage
 
 ### Basic Usage
